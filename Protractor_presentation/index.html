@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,8 +25,70 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+
+        <section>
+          <section data-transition="slide-in fade-out">
+            <h2>Protractor</h2>
+            <h3>on the top of the testing piramid</h3>
+          </section>
+
+          <section data-transition="fade-in slide-out">
+            <img class="plain" src="./img/angular-protractor.png" alt="Protractor Logo">
+            <p class="fragment fade-up">Protractor is an end-to-end test framework for Angular and AngularJS applications.</p>
+            <p class="fragment fade-in-then-out">Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
+          </section>
+        </section>
+
+        <section>
+          <h4>How It Works</h4>
+          <section>
+            <img class="plain fragment fade-in" src="./img/components.png" alt="components">
+            <br>
+            <ul>
+              <li class="fragment fade-in">Protractor is a Node.js program</li>
+              <li class="fragment fade-in">Protractor is a wrapper around WebDriverJS</li>
+              <li class="fragment fade-in">Selenium is a browser automation framework, includes Selenium Server, the WebDriver APIs, and the WebDriver browser drivers.</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+            <h3>Protractor needs two files to run:</h3>
+            <p class="fragment fade-up">1. Configuration file</p>
+            <p class="fragment fade-up">2. Test or spec file</p>
+        </section>
+
+        <section>
+          <h4>Configuration file:</h4>
+          <section>
+<pre><code class="hljs" data-line-numbers="2-8,10">
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+        args: [ "--headless", "--window-size=800,600" ]
+      }
+  },
+  directConnect: true,
+  baseUrl: 'http://localhost:4200/',
+  framework: 'jasmine',
+
+</code></pre></section>
+<section>
+<pre><code class="hljs" data-line-numbers="2-9">
+  onPrepare() {
+    require('ts-node').register({
+      project: require('path').join(__dirname, './tsconfig.json')
+    });
+    jasmine.getEnv().addReporter(new SpecReporter({
+        spec: { displayStacktrace: true }
+      }));
+  }
+
+</code></pre></section>
+
+        </section>
+      </section>
+
 			</div>
 		</div>
 
