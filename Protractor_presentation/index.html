@@ -182,7 +182,7 @@ export class PostsPage extends BasePage {
           </section>
           <section data-transition="fade-in">
 <pre><code class="hljs" data-line-numbers="1-15">
-  public async enterMessage(): Promise<void> {
+  public async enterMessage(message: string): Promise<void> {
     return this.getMessageInputField().sendKeys('My test message');
   }
 
@@ -225,7 +225,7 @@ describe('Posts Page', async () => {
           <section>
 <pre><code class="hljs" data-line-numbers="1-15">
 it('should add new post message', async () => {
-  await postsPO.enterMessage();
+  await postsPO.enterMessage('My test message');
   await postsPO.clickPostMessageButton();
 
   expect(await postsPO.getLastPostedMessageText()).toContain('My test message');
