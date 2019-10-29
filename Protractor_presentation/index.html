@@ -26,7 +26,6 @@
 		<div class="reveal">
 			<div class="slides">
 
-        <section>
           <section data-transition="slide-in fade-out">
             <h2>Protractor</h2>
             <h3>on the top of the testing piramid</h3>
@@ -35,7 +34,7 @@
           <section data-transition="fade-in slide-out">
             <img class="plain" src="./img/angular-protractor.png" alt="Protractor Logo">
             <p class="fragment fade-up">Protractor is an end-to-end test framework for Angular and AngularJS applications.</p>
-            <p class="fragment fade-in-then-out">Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
+            <p class="fragment fade-in">Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
           </section>
         </section>
 
@@ -61,19 +60,30 @@
         <section>
           <h4>Configuration file:</h4>
           <section>
-<pre><code class="hljs" data-line-numbers="1-8,10-11">
+<pre><code class="hljs" data-line-numbers="1-8">
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
         args: [ "--headless", "--window-size=800,600" ]
       }
-  },
-  directConnect: true,
-  baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  }
 
-</code></pre></section>
-<section>
+</code></pre>
+          <div class="fragment fade-in">
+            <p>Protractor supports the two latest major versions of Chrome, Firefox, Safari, and IE.</p>
+            <img class="plain" src="./img//browsers.png" alt="Browsers">
+          </div>
+        </section>
+
+        <section>
+<pre><code class="hljs" data-line-numbers="1-5">
+    directConnect: true,
+    framework: 'jasmine'
+
+  </code></pre>
+        </section>
+
+        <section>
 <pre><code class="hljs" data-line-numbers="1-10">
   onPrepare() {
     require('ts-node').register({
@@ -104,36 +114,168 @@
   });
 
 </code></pre>
+            <ul style="list-style-type: none;">
+              <li class="fragment fade-up">Protractor and Jasmin syntax only...</li>
+              <li class="fragment fade-up">any interaction with application code</li>
+            </ul>
+          </section>
+          <section>
+<pre><code class="hljs" data-line-numbers="1-15">
+  it('should add new post message', async () => {
+    await element(by.css('.user-message-input'))
+      .sendKeys('My test message');
+    await element(by.id('submitButton'))
+      .click();
+
+    expect(await element.all(by.className('post'))
+      .get(0)
+      .getText())
+      .toContain('My test message');
+  });
+
+</code></pre>
+            <ul>
+              <li class="fragment fade-up">element(by.css/ by.id/ by.className(''))</li>
+              <li class="fragment fade-up">element().click()/ .getText()/ .all().get(0)</li>
+            </ul>
           </section>
         </section>
 
         <section>
-          <h4>Finding elements</h4>
-          few werbs about by.css and other
-        </section>
-
-        <section>
-          <h4>Fun mem????</h4>
-          mb add?
-        </section>
-
-        <section>
-          <h4>Test organization/Building efficient ecosystem</h4>
-          common slide
+          <h2>Tests organization</h2>
+          <h4>for building an Efficient Ecosystem</h4>
         </section>
 
         <section>
           <h4>Pattern Page Object</h4>
-          https://www.protractortest.org/#/page-objects
+          <p class="fragment fade-up">...simply models pages as objects within the test code.</p>
+          <br>
+          <h6 class="fragment fade-up">Helps to avoid:</h6>
+          <ul style="list-style-type: none">
+            <li class="fragment fade-up">- Code duplication</li>
+            <li class="fragment fade-up">- Maintenance problem</li>
+            <li class="fragment fade-up">- Hard to understand</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Page Object</h4>
+          <p style="font-size: 70%"><i style="color: darkslategrey;">posts.po.ts</i> or <i style="color: darkslategrey;">posts.page-object.ts</i></p>
+          <section data-transition="slide-in fade-out">
+<pre><code class="hljs" data-line-numbers="1-15">
+import { browser, by, element, ElementFinder } from 'protractor';
+
+export class PostsPage extends BasePage {
+
+  async navigateToPostsPage(): Promise<void> {
+    return browser.get('/post-page');
+  }
+
+  getMessageInputField(): ElementFinder {
+    return element(by.css('.user-message-input'));
+  }
+
+ // more methods...
+}
+
+</code></pre>
+          </section>
+          <section data-transition="fade-in">
+<pre><code class="hljs" data-line-numbers="1-15">
+async enterMessage(): Promise<void> {
+    return this.getMessageInputField().sendKeys('My test message');
+  }
+
+  getPostMessageButton(): ElementFinder {
+    return element(by.id('submitButton'));
+  }
+
+  async clickPostMessageButton(): Promise<void> {
+    return this.getPostMessageButton().click();
+  }
+
+  async getLastPostedMessageText(): Promise<string> {
+    return await element.all(by.className('post'))
+      .get(0)
+      .getText();
+  }
+}
+</code></pre>
+
+        </section>
+      </section>
+
+      <section>
+        <h4>Usage Page Object in spec file</h4>
+        <p style="font-size: 70%"><i style="color: darkslategrey;">posts.e2e-spec.ts</i></i></p>
+          <section>
+<pre><code class="hljs" data-line-numbers="1-15">
+import { PostsPage } from './posts-page.po';
+
+describe('Posts Page', async () => {
+  let postsPO: AppPage;
+
+  beforeAll(async () => {
+    postsPO = new PostsPage();
+    postsPO.navigateToPostsPage();
+  });
+
+</code></pre>
+          </section>
+          <section>
+<pre><code class="hljs" data-line-numbers="1-15">
+it('should add new post message', async () => {
+  await postsPO.enterMessage();
+  await postsPO.clickPostMessageButton();
+
+  expect(await postsPO.getLastPostedMessageText()).toContain('My test message');
+});
+
+</code></pre>
+          </section>
+          <section>
+<pre><code class="hljs" data-line-numbers="1-15">
+it('should add new post message', async () => {
+  await element(by.css('.user-message-input'))
+    .sendKeys('My test message');
+  await element(by.id('submitButton'))
+    .click();
+
+  expect(await element.all(by.className('post'))
+    .get(0)
+    .getText())
+    .toContain('My test message');
+});
+
+</code></pre>
+          </section>
         </section>
 
         <section>
           <h4>Project Structure</h4>
-          https://www.protractortest.org/#/style-guide
+          <p style="font-size: 70%;">Group your e2e tests in a structure that makes sense to the structure of your project</p>
+<pre><code class="hljs" data-line-numbers="1-15">
+  |-- test
+    |-- unit
+    |-- e2e
+      |-- page-objects
+          home-page.js
+          profile-page.js
+          contacts-page.js
+      home-spec.js
+      profile-spec.js
+      contacts-spec.js
+</code></pre>
+        <ul style="font-size: 50%;">
+          <li class="fragment fade-up">Finding your e2e related files should be intuitive and easy</li>
+          <li class="fragment fade-up">Makes the folder structure more readable</li>
+          <li class="fragment fade-up">Clearly separates e2e tests from unit tests</li>
+        </ul>
         </section>
 
         <section>
           <h4>Pitfals</h4>
+          <img class="plain" src="./img/pitfals.jpg" alt="Meme_pitfals">
           https://www.protractortest.org/#/timeouts
           https://www.protractortest.org/#/infrastructure
         </section>

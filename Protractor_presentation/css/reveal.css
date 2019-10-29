@@ -1596,3 +1596,10 @@ body {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+/*********************************************
+ * CUSTOM PART
+ *********************************************/
+.ul-custom {
+  list-style-type: none;
+}
