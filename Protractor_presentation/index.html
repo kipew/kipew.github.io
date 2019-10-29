@@ -61,7 +61,7 @@
         <section>
           <h4>Configuration file:</h4>
           <section>
-<pre><code class="hljs" data-line-numbers="2-8,10">
+<pre><code class="hljs" data-line-numbers="1-8,10-11">
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
@@ -74,14 +74,14 @@
 
 </code></pre></section>
 <section>
-<pre><code class="hljs" data-line-numbers="2-9">
+<pre><code class="hljs" data-line-numbers="1-10">
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.json')
     });
     jasmine.getEnv().addReporter(new SpecReporter({
-        spec: { displayStacktrace: true }
-      }));
+      spec: { displayStacktrace: true }
+    }));
   }
 
 </code></pre></section>
@@ -90,21 +90,64 @@
         <section>
           <h4>Spec/test file</h4>
           <section>
-<pre><code class="hljs" data-line-numbers="2-12">
-  describe('Angular homepage', async () => {
+<pre><code class="hljs" data-line-numbers="1-13">
+  describe('App Greeting page', async () => {
     it('should greet the named user', async () => {
-      await browser.get('http://www.my-app.com');
+      await browser.get('http://www.my-greeting-app.com');
 
-      await element(by.tagName('input')).sendKeys('Andrii');
+      await element(by.name('userName')).sendKeys('John');
 
       const greeting = element(by.className('greeting'));
 
-      expect(greeting.getText()).toEqual('Hello Andrii!');
+      expect(greeting.getText()).toEqual('Hello John!');
     });
   });
 
 </code></pre>
           </section>
+        </section>
+
+        <section>
+          <h4>Finding elements</h4>
+          few werbs about by.css and other
+        </section>
+
+        <section>
+          <h4>Fun mem????</h4>
+          mb add?
+        </section>
+
+        <section>
+          <h4>Test organization/Building efficient ecosystem</h4>
+          common slide
+        </section>
+
+        <section>
+          <h4>Pattern Page Object</h4>
+          https://www.protractortest.org/#/page-objects
+        </section>
+
+        <section>
+          <h4>Project Structure</h4>
+          https://www.protractortest.org/#/style-guide
+        </section>
+
+        <section>
+          <h4>Pitfals</h4>
+          https://www.protractortest.org/#/timeouts
+          https://www.protractortest.org/#/infrastructure
+        </section>
+
+        <section>
+          <h4>Best Practices</h4>
+        </section>
+
+        <section>
+          <h4>Conclusions</h4>
+        </section>
+
+        <section>
+          <h4>QA</h4>
         </section>
 
 			</div>
