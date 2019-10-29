@@ -85,9 +85,27 @@
   }
 
 </code></pre></section>
-
         </section>
-      </section>
+
+        <section>
+          <h4>Spec/test file</h4>
+          <section>
+<pre><code class="hljs" data-line-numbers="2-12">
+  describe('Angular homepage', async () => {
+    it('should greet the named user', async () => {
+      await browser.get('http://www.my-app.com');
+
+      await element(by.tagName('input')).sendKeys('Andrii');
+
+      const greeting = element(by.className('greeting'));
+
+      expect(greeting.getText()).toEqual('Hello Andrii!');
+    });
+  });
+
+</code></pre>
+          </section>
+        </section>
 
 			</div>
 		</div>
