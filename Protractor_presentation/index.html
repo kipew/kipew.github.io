@@ -42,7 +42,7 @@
           <h4>How It Works</h4>
           <section>
             <img class="plain fragment fade-in" src="./img/components.png" alt="components">
-            <ul style="font-size: 50%">
+            <ul style="font-size: 70%">
               <li class="fragment fade-in">Protractor is a Node.js program</li>
               <li class="fragment fade-in">Protractor is a wrapper around WebDriverJS</li>
               <li class="fragment fade-in">Selenium is a browser automation framework, includes Selenium Server, the WebDriver APIs, and the WebDriver browser drivers.</li>
@@ -136,7 +136,7 @@
   });
 
 </code></pre>
-            <ul style="font-size: 50%">
+            <ul style="font-size: 70%">
               <li class="fragment fade-up">element(by.css/ by.id/ by.className(''))</li>
               <li class="fragment fade-up">element().click()/ .getText()/ .all().get(0)</li>
             </ul>
@@ -270,7 +270,7 @@ it('should add new post message', async () => {
       contacts-spec.js
 
 </code></pre>
-        <ul style="font-size: 50%;">
+        <ul style="font-size: 70%;">
           <li class="fragment fade-up">Finding your e2e related files should be intuitive and easy</li>
           <li class="fragment fade-up">Makes the folder structure more readable</li>
           <li class="fragment fade-up">Clearly separates e2e tests from unit tests</li>
@@ -278,32 +278,106 @@ it('should add new post message', async () => {
         </section>
 
         <section>
-          <h4>Pitfals</h4>
-          <img class="plain" src="./img/pitfals.jpg" alt="Meme_pitfals">
+          <h2>Pitfals</h2>
+          <img class="plain fragment fade-up" src="./img/pitfals.jpg" alt="Meme_pitfals">
+        </section>
+
+        <section>
+          <h4>Timeouts</h4>
+          <p class="fragment fade-up" style="font-size: 70%;">Because WebDriver tests are asynchronous and involve many components, there are several reasons why a timeout could occur in a Protractor test.</p>
+        </section>
+
+        <section>
+          <h4>Protractor Timeouts</h4>
           <section>
-            <img class="plain" src="./img/non-angular-app.png" alt="Error">
+            <img class="plain fragment fade-up" src="./img/script_timeout.png" alt="Error">
+            <p class="fragment fade-up" style="font-size: 50%;">or</p>
+            <img class="plain fragment fade-up" src="./img/timeout.png" alt="Error">
+            <p class="fragment fade-up" style="font-size: 50%;">...it can ocure becouse</p>
+            <p class="fragment fade-up" style="font-size: 70%;">With Protractor, the test script is run using Node.js. Protractor runs an extra command before performing any action on the browser to ensure that the application being tested has stabilized.</p>
           </section>
-          <section></section>
-          <section></section>
-          <section></section>
-          https://www.protractortest.org/#/timeouts
-          https://www.protractortest.org/#/infrastructure
+
+          <section>
+            <p style="font-size: 70%;">Solution</p>
+            <p class="fragment fade-up" style="font-size: 70%;">...increase timeouts</p>
+            <p class="fragment fade-up" style="font-size: 70%;">Globaly in Protractor config file</p>
+<pre class="fragment fade-up"><code class="hljs" data-line-numbers="2, 5">
+allScriptsTimeout: timeout_in_millis,
+jasmineNodeOpts: {
+  showColors: true,
+  defaultTimeoutInterval: timeout_in_millis,
+  print: function() {}
+},
+
+</code></pre>
+            <p class="fragment fade-up" style="font-size: 70%;">For Jasmine in certain spec file </p>
+<pre class="fragment fade-up"><code class="hljs" data-line-numbers="2, 5">
+  jasmine.DEFAULT_TIMEOUT_INTERVAL = timeout_in_millis;
+
+</code></pre>
+          </section>
+
+          <section>
+            <p>But...</p>
+            <p class="fragment fade-up" style="font-size: 70%;">For Angular apps, Protractor will wait until the Angular Zone stabilizes. This means long running async operations will block your test from continuing.</p>
+            <p class="fragment fade-up" style="font-size: 70%;">To work around this, run these tasks outside the Angular zone.</p>
+<pre class="fragment fade-up"><code class="hljs" data-line-numbers="1-11">
+    this.ngZone.runOutsideAngular(() => {
+      setTimeout(() => {
+        // Changes here will not propagate into your view.
+        this.ngZone.run(() => {
+          // Run inside the ngZone to trigger change detection.
+        });
+      }, REALLY_LONG_DELAY);
+    });
+
+</code></pre>
+          </section>
         </section>
 
         <section>
-          <h4>Best Practices</h4>
-          <section></section>
-          <section></section>
-          <section></section>
-          <section></section>
+            <h4>Non Angular Application</h4>
+            <p class="fragment fade-up" style="font-size: 70%;">Navigating to third-party resources may come as a surprise</p>
+            <img class="plain fragment fade-up" src="./img/non-angular.png" alt="Error">
+            <p class="fragment fade-up" style="font-size: 70%;">You can turn off waiting for Angular by setting</p>
+<pre class="fragment fade-up"><code class="hljs" data-line-numbers="1-8">
+browser.waitForAngularEnabled(false);
+browser.get('/non-angular-login-page.html');
+
+// do something...
+
+browser.waitForAngularEnabled(true);
+browser.get('/page-containing-angular.html');
+
+</code></pre>
         </section>
 
         <section>
-          <h4>Conclusions</h4>
+          <h2>Best Practices</h2>
+          <ul>
+            <li class="fragment fade-up">Use TypeScript instead of JavaScript</li>
+            <li class="fragment fade-up">Implement Page Object Pattern</li>
+            <li class="fragment fade-up">One TypeScript file, one page object class</li>
+            <li class="fragment fade-up">Deal with JavaScript’s asynchronous behavior using async & await</li>
+            <li class="fragment fade-up">Test case should only call page object’s methods</li>
+            <li class="fragment fade-up">Avoid hidden assertions in the page object classes</li>
+            <li class="fragment fade-up">Have simple but effective project structure</li>
+            <li class="fragment fade-up">Test your test code more frequently</li>
+          </ul>
         </section>
 
         <section>
-          <h4>QA</h4>
+          <h2>Summarize</h2>
+          <ul>
+            <li class="fragment fade-up">e2e test Framework for Angular applications supplied out of the box</li>
+            <li class="fragment fade-up">Wraps Selenium and provides us with improved syntax and special built-in hooks for Angular.</li>
+            <li class="fragment fade-up">TypeScript support is available and the library is operated and maintained by the huge Angular team.</li>
+            <li class="fragment fade-up"><a href="https://angular.io/guide/testing">Angular official documentation</a> suggests using this tool.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Q&amp;A</h2>
         </section>
 
 			</div>
