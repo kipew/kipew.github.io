@@ -26,24 +26,23 @@
 		<div class="reveal">
 			<div class="slides">
 
-          <section data-transition="slide-in fade-out">
-            <h2>Protractor</h2>
-            <h3>on the top of the testing piramid</h3>
-          </section>
+        <section data-transition="slide-in fade-out">
+          <h2>Protractor</h2>
+          <h3>on the top of the Testing Pyramid</h3>
+        </section>
 
-          <section data-transition="fade-in slide-out">
-            <img class="plain" src="./img/angular-protractor.png" alt="Protractor Logo">
-            <p class="fragment fade-up">Protractor is an end-to-end test framework for Angular and AngularJS applications.</p>
-            <p class="fragment fade-in">Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
-          </section>
+        <section data-transition="fade-in slide-out">
+          <img class="plain" src="./img/angular-protractor.png" alt="Protractor Logo">
+          <br/>
+          <p class="fragment fade-up">Protractor is an end-to-end test framework for Angular and AngularJS applications.</p>
+          <p class="fragment fade-in">Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
         </section>
 
         <section>
           <h4>How It Works</h4>
           <section>
             <img class="plain fragment fade-in" src="./img/components.png" alt="components">
-            <br>
-            <ul>
+            <ul style="font-size: 50%">
               <li class="fragment fade-in">Protractor is a Node.js program</li>
               <li class="fragment fade-in">Protractor is a wrapper around WebDriverJS</li>
               <li class="fragment fade-in">Selenium is a browser automation framework, includes Selenium Server, the WebDriver APIs, and the WebDriver browser drivers.</li>
@@ -60,30 +59,31 @@
         <section>
           <h4>Configuration file:</h4>
           <section>
-<pre><code class="hljs" data-line-numbers="1-8">
+<pre><code class="hljs" data-line-numbers="1-9">
   capabilities: {
     browserName: 'chrome',
+    maxInstances: 3,
     chromeOptions: {
         args: [ "--headless", "--window-size=800,600" ]
       }
   }
 
 </code></pre>
-          <div class="fragment fade-in">
-            <p>Protractor supports the two latest major versions of Chrome, Firefox, Safari, and IE.</p>
-            <img class="plain" src="./img//browsers.png" alt="Browsers">
-          </div>
-        </section>
+            <div class="fragment fade-in">
+              <p style="font-size: 50%">Protractor supports the two latest major versions of Chrome, Firefox, Safari, and IE.</p>
+              <img class="plain" src="./img//browsers.png" alt="Browsers">
+            </div>
+          </section>
 
-        <section>
+          <section>
 <pre><code class="hljs" data-line-numbers="1-5">
     directConnect: true,
     framework: 'jasmine'
 
   </code></pre>
-        </section>
+          </section>
 
-        <section>
+          <section>
 <pre><code class="hljs" data-line-numbers="1-10">
   onPrepare() {
     require('ts-node').register({
@@ -94,7 +94,8 @@
     }));
   }
 
-</code></pre></section>
+</code></pre>
+          </section>
         </section>
 
         <section>
@@ -103,7 +104,7 @@
 <pre><code class="hljs" data-line-numbers="1-13">
   describe('App Greeting page', async () => {
     it('should greet the named user', async () => {
-      await browser.get('http://www.my-greeting-app.com');
+      await browser.get('/greeting');
 
       await element(by.name('userName')).sendKeys('John');
 
@@ -119,9 +120,10 @@
               <li class="fragment fade-up">any interaction with application code</li>
             </ul>
           </section>
+
           <section>
 <pre><code class="hljs" data-line-numbers="1-15">
-  it('should add new post message', async () => {
+  it('should add new Post Message', async () => {
     await element(by.css('.user-message-input'))
       .sendKeys('My test message');
     await element(by.id('submitButton'))
@@ -134,7 +136,7 @@
   });
 
 </code></pre>
-            <ul>
+            <ul style="font-size: 50%">
               <li class="fragment fade-up">element(by.css/ by.id/ by.className(''))</li>
               <li class="fragment fade-up">element().click()/ .getText()/ .all().get(0)</li>
             </ul>
@@ -151,7 +153,7 @@
           <p class="fragment fade-up">...simply models pages as objects within the test code.</p>
           <br>
           <h6 class="fragment fade-up">Helps to avoid:</h6>
-          <ul style="list-style-type: none">
+          <ul style="list-style-type: none; font-size: 70%">
             <li class="fragment fade-up">- Code duplication</li>
             <li class="fragment fade-up">- Maintenance problem</li>
             <li class="fragment fade-up">- Hard to understand</li>
@@ -168,10 +170,10 @@ import { browser, by, element, ElementFinder } from 'protractor';
 export class PostsPage extends BasePage {
 
   public async navigateToPostsPage(): Promise<void> {
-    return super.navigateTo('/post-page');
+    return super.navigateTo('/posts-page');
   }
 
-  public getMessageInputField(): ElementFinder {
+  public getEnterPostMessageInputField(): ElementFinder {
     return element(by.css('.user-message-input'));
   }
 
@@ -181,25 +183,26 @@ export class PostsPage extends BasePage {
 </code></pre>
           </section>
           <section data-transition="fade-in">
-<pre><code class="hljs" data-line-numbers="1-15">
-  public async enterMessage(message: string): Promise<void> {
-    return this.getMessageInputField().sendKeys('My test message');
+<pre><code class="hljs" data-line-numbers="1-16">
+  public async enterPostMessage(message: string): Promise<void> {
+    return this.getEnterPostMessageInputField().sendKeys('My test message');
   }
 
-  public getPostMessageButton(): ElementFinder {
+  public getSendPostButton(): ElementFinder {
     return element(by.id('submitButton'));
   }
 
-  public async clickPostMessageButton(): Promise<void> {
-    return this.getPostMessageButton().click();
+  public async clickSendPostButton(): Promise<void> {
+    return this.getSendPostButton().click();
   }
 
-  public async getLastPostedMessageText(): Promise<string> {
+  public async getLastPostedMessage(): Promise<string> {
     return await element.all(by.className('post'))
       .get(0)
       .getText();
   }
 }
+
 </code></pre>
 
         </section>
@@ -207,13 +210,13 @@ export class PostsPage extends BasePage {
 
       <section>
         <h4>Usage Page Object in spec file</h4>
-        <p style="font-size: 70%"><i style="color: darkslategrey;">posts.e2e-spec.ts</i></i></p>
+        <p style="font-size: 70%"><i style="color: darkslategrey;">posts.e2e-spec.ts</i></p>
           <section>
 <pre><code class="hljs" data-line-numbers="1-15">
 import { PostsPage } from './posts-page.po';
 
 describe('Posts Page', async () => {
-  let postsPO: AppPage;
+  let postsPO: PostsPage;
 
   beforeAll(async () => {
     postsPO = new PostsPage();
@@ -224,11 +227,11 @@ describe('Posts Page', async () => {
           </section>
           <section>
 <pre><code class="hljs" data-line-numbers="1-15">
-it('should add new post message', async () => {
-  await postsPO.enterMessage('My test message');
-  await postsPO.clickPostMessageButton();
+it('should add new Post Message', async () => {
+  await postsPO.enterPostMessage('My test message');
+  await postsPO.clickSendPostButton();
 
-  expect(await postsPO.getLastPostedMessageText()).toContain('My test message');
+  expect(await postsPO.getLastPostedMessage()).toContain('My test message');
 });
 
 </code></pre>
@@ -265,6 +268,7 @@ it('should add new post message', async () => {
       home-spec.js
       profile-spec.js
       contacts-spec.js
+
 </code></pre>
         <ul style="font-size: 50%;">
           <li class="fragment fade-up">Finding your e2e related files should be intuitive and easy</li>
@@ -276,12 +280,22 @@ it('should add new post message', async () => {
         <section>
           <h4>Pitfals</h4>
           <img class="plain" src="./img/pitfals.jpg" alt="Meme_pitfals">
+          <section>
+            <img class="plain" src="./img/non-angular-app.png" alt="Error">
+          </section>
+          <section></section>
+          <section></section>
+          <section></section>
           https://www.protractortest.org/#/timeouts
           https://www.protractortest.org/#/infrastructure
         </section>
 
         <section>
           <h4>Best Practices</h4>
+          <section></section>
+          <section></section>
+          <section></section>
+          <section></section>
         </section>
 
         <section>
