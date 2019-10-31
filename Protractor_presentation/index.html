@@ -124,6 +124,7 @@
           <section>
 <pre><code class="hljs" data-line-numbers="1-15">
   it('should add new Post Message', async () => {
+    await browser.get('/posts-page');
     await element(by.css('.user-message-input'))
       .sendKeys('My test message');
     await element(by.id('submitButton'))
@@ -136,9 +137,11 @@
   });
 
 </code></pre>
+            <p style="font-size: 70%">Protractor API part:</p>
             <ul style="font-size: 70%">
-              <li class="fragment fade-up">element(by.css/ by.id/ by.className(''))</li>
-              <li class="fragment fade-up">element().click()/ .getText()/ .all().get(0)</li>
+              <li class="fragment fade-up">browser.get('/')</li>
+              <li class="fragment fade-up">element(by.css()), by.id(), by.className()</li>
+              <li class="fragment fade-up">element().click(), .getText(), .all().get(0)</li>
             </ul>
           </section>
         </section>
@@ -185,18 +188,19 @@ export class PostsPage extends BasePage {
           <section data-transition="fade-in">
 <pre><code class="hljs" data-line-numbers="1-16">
   public async enterPostMessage(message: string): Promise<void> {
-    return this.getEnterPostMessageInputField().sendKeys('My test message');
+    return this.getEnterPostMessageInputField()
+      .sendKeys('My test message');
   }
 
-  public getSendPostButton(): ElementFinder {
+  public getPublishPostButton(): ElementFinder {
     return element(by.id('submitButton'));
   }
 
-  public async clickSendPostButton(): Promise<void> {
-    return this.getSendPostButton().click();
+  public async clickPublishPostButton(): Promise<void> {
+    return this.getPublishPostButton().click();
   }
 
-  public async getLastPostedMessage(): Promise<string> {
+  public async getLastPublishedPostMessage(): Promise<string> {
     return await element.all(by.className('post'))
       .get(0)
       .getText();
@@ -229,9 +233,10 @@ describe('Posts Page', async () => {
 <pre><code class="hljs" data-line-numbers="1-15">
 it('should add new Post Message', async () => {
   await postsPO.enterPostMessage('My test message');
-  await postsPO.clickSendPostButton();
+  await postsPO.clickPublishPostButton();
 
-  expect(await postsPO.getLastPostedMessage()).toContain('My test message');
+  expect(await postsPO.getLastPublishedPostMessage())
+    .toContain('My test message');
 });
 
 </code></pre>
@@ -278,8 +283,7 @@ it('should add new post message', async () => {
         </section>
 
         <section>
-          <h2>Pitfals</h2>
-          <img class="plain fragment fade-up" src="./img/pitfals.jpg" alt="Meme_pitfals">
+          <img class="plain" src="./img/pitfals.jpg" alt="Meme_pitfals">
         </section>
 
         <section>
@@ -377,7 +381,7 @@ browser.get('/page-containing-angular.html');
         </section>
 
         <section>
-          <h2>Q&amp;A</h2>
+          <h2>Thank You</h2>
         </section>
 
 			</div>
