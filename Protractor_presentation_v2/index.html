@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+    <link rel="stylesheet" href="lib/css/styles.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+
+        <section>
+        </section>
+
+        <section data-transition="fade-in" data-transition-speed="slow">
+          <h2>Is PROTRACTOR hurmfull for your health?</h2>
+        </section>
+
+        <section data-transition="fade in slide-out" data-transition-speed="slow">
+          <h2>Protractor, what the ..?</h2>
+          <div class="fragment fade-in">
+            <p>...is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
+            <img src="./img/angular-protractor.png" alt="angular+protractor">
+          </div>
+        </section>
+
+        <section>
+          <h2>But, what is end-to-end testing?</h2>
+          <p class="fragment fade-in">End-to-End Testing is defined as a type Software Testing that not only validates the software system under test but also checks its integration with external interfaces. Hence, the name "End-to-End". The purpose of End-to-End Testing is to exercise a complete production-like scenario.</p>
+        </section>
+
+        <section>
+          <h2>JS Testing tools and frameworks</h2>
+          <ul class="font-size-24px">
+            <li>launch your tests in the browser or Node.js</li>
+            <li>providers help you arrange your test files</li>
+            <li>assertion functions check if the results a test returns are as expected</li>
+            <li>generate and display test progress and results</li>
+            <li>provide mocks, spies, and stubs</li>
+            <li>generate and compare snapshots of component and data structures</li>
+            <li>generate code coverage reports</li>
+            <li>browser Controllers simulate user actions for Functional Tests</li>
+            <li>visual Regression Tools are used to compare your site to its previous versions visually by using image comparison techniques</li>
+          </ul>
+          <p class="font-size-28px" style="color: #17ff2e">To achieve the most flexible set functionality, it’s common to use a combination of several tools.</p>
+        </section>
+
+
+        <section>
+          <div class="flex-container font-size-24px">
+            <div class="flex-container__item" style="flex-grow: 9;">
+              <img class="card-img" src="./img/unit_testing_tools.jpg">
+              <p>General Prominent Testing Tools</p>
+            </div>
+            <div class="flex-container__item" style="flex-grow: 10;">
+              <img class="card-img card-zoom" src="./img/integration_testing_frameworks.png">
+              <p>Unit and Integration Tests Frameworks</p>
+            </div>
+            <div class="flex-container__item" style="flex-grow: 15;">
+              <img class="card-img card-zoom" src="./img/e2e_frameworks.jpg">
+              <p>Functional Testing Tools</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Everyone loves e2e tests:</h2>
+          <ul class="dashed">
+            <li class="fragment fade-in"> developers, because they don’t write them</li>
+            <li class="fragment fade-in"> business, because they reflect the real user experience</li>
+            <li class="fragment fade-in"> testers, because they act at the user high level and reveal “visible” bugs</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Prepare your appropriate test environment</h2>
+          <p>Any gif?</p>
+        </section>
+
+        <section>
+          <h4>Project Structure</h4>
+          <p style="font-size: 70%;">Group your e2e tests in a structure that makes sense to the structure of your project</p>
+<pre><code class="hljs" data-line-numbers="1-15">
+  |-- test
+    |-- unit
+    |-- e2e
+      |-- page-objects
+          home-page.js
+          profile-page.js
+          contacts-page.js
+      home-spec.js
+      profile-spec.js
+      contacts-spec.js
+
+</code></pre>
+        <ul class="font-size-28px">
+          <li>Finding your e2e related files should be intuitive and easy</li>
+          <li>Makes the folder structure more readable</li>
+          <li>Clearly separates e2e tests from unit tests</li>
+        </ul>
+        </section>
+
+        <section>
+          <h4>Pattern  <a href="http://www.protractortest.org/#/style-guide">Page Object</a></h4>
+          <p class="fragment fade-up">...simply models pages as objects within the test code.</p>
+          <br>
+          <h6 class="fragment fade-up">Helps to avoid:</h6>
+          <ul style="list-style-type: none; font-size: 70%">
+            <li class="fragment fade-up">- Code duplication</li>
+            <li class="fragment fade-up">- Maintenance problem</li>
+            <li class="fragment fade-up">- Hard to understand</li>
+          </ul>
+        </section>
+
+        <section>
+          <p class="font-size-28px" style="color: #1b91ff">example.page-object.ts</p>
+<pre class="font-size-24px" style="overflow: hidden;"><code style="overflow: hidden;" class="hljs" data-line-numbers="1-15">import { browser, by, element, ElementFinder } from 'protractor';
+
+export class ExamplePageObject extends BasePageObject {
+
+  public async navigateToPage(): Promise<void> {
+    return super.navigateTo('/example-page');
+  }
+
+  public getExampleButton(): ElementFinder {
+    return element(by.css('.example-button'));
+  }
+
+ // more methods...
+}
+
+</code></pre>
+          </section>
+
+          <section>
+            <p class="font-size-28px" style="color: #1b91ff">example.spec.ts</p>
+<pre><code class="hljs" data-line-numbers="1-15">import { ExamplePageObject } from '@pos/example.page-object';
+
+describe('Example test suite', async () => {
+  let examplePO: ExamplePageObject;
+
+  beforeAll(async () => {
+    examplePO = new ExamplePageObject();
+    examplePO.navigateToPage();
+  });
+
+  it('shold navigate to example page', async () => {
+    expect(examplePO.isPageOpened()).toBe(true, 'comment');
+  });
+}
+</code></pre>
+              </section>
+
+        <section>
+          <h4>Configs</h4>
+          <ul>
+            <li>build configs</li>
+            <ul class="dashed font-size-28px">
+              <li> set up environment <span style="color: #ff2c2d">prod</span>/<span style="color: #17ff2e">dev</span>/<span style="color: #1b91ff">mock</span></li>
+              <li> use proxy</li>
+              <li> run separate feature independently</li>
+            </ul>
+            <li>protractor config</li>
+            <ul class="dashed font-size-28px">
+              <li> choose and configurate browser</li>
+              <li> choose framework: jasmine <span style="color: #565656">by default</span>, mocha or custom</li>
+              <li> send options to Jasmine</li>
+              <li> set up timeouts</li>
+              <li> include/exclude spec files</li>
+              <li> set up path to save logers output</li>
+              <li> execute some preparation before/after tests run</li>
+              <li> <a href="https://github.com/angular/protractor/blob/master/lib/config.ts">and more........</a></li>
+            </ul>
+          </ul>
+        </section>
+
+        <section>
+          <p>Chrome configuration example</p>
+        </section>
+
+        <section>
+          <p>onPrepare example</p>
+        </section>
+
+        <section>
+          <h2><p style="color: #17ff2e">Green console</p> <p class="font-size-28px">vs</p> <p style="color: #ff2c2d">Red console</p></h2>
+        </section>
+
+        <section>
+          <h4>Most freequent Errors</h4>
+          <ul>
+            <li>Wrong selectors</li>
+            <li>Jasmine timeout</li>
+            <li>Async callback timeout</li>
+            <li>Non Angular app</li>
+            <li>Non stable tests</li>
+            <li>Dependent test suites</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Useful links</h4>
+          <ol>
+            <li>Great overview of <a href="https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2019-264e19514d0a">JavaScript Testing tools and popular frameworks</a></li>
+            <li>Nice to read about <a href="https://www.logigear.com/blog/test-automation/15-best-practices-for-building-an-awesome-protractor-framework/">"15 Best Practices for Building an Efficient Protractor Automation Framework"</a></li>
+            <li>FAQ and <a href="https://blog.octo.com/end-to-end-testing-from-the-trenches-with-protractor/">answers from real life situation</a> how to do with Protractor</li>
+            <li>Protractor <a href="http://www.protractortest.org">Documentation</a></li>
+          </ol>
+        </section>
+
+        <section data-background-image="./img/error.gif"></section>
+
+        <section>
+          <h2>Q&A</h2>
+          <img src="./img/presentation_link.png" alt="presentation link">
+          <p class="font-size-24px" style="color: #1b91ff"><i>#presentation_link</i></p>
+        </section>
+
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				],
+        markdown: {
+		        smartypants: true
+        }
+			});
+    </script>
+	</body>
+</html>
