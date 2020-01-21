@@ -27,9 +27,7 @@
 		<div class="reveal">
 			<div class="slides">
 
-
-        <section>
-        </section>
+        <section></section>
 
         <section data-transition="fade-in" data-transition-speed="slow">
           <h2>Is PROTRACTOR hurmfull for your health?</h2>
@@ -52,7 +50,7 @@
           <h2>JS Testing tools and frameworks</h2>
           <ul class="font-size-24px">
             <li>launch your tests in the browser or Node.js</li>
-            <li>providers help you arrange your test files</li>
+            <li>testing structure providers help you arrange your test files</li>
             <li>assertion functions check if the results a test returns are as expected</li>
             <li>generate and display test progress and results</li>
             <li>provide mocks, spies, and stubs</li>
@@ -93,7 +91,7 @@
 
         <section>
           <h2>Prepare your appropriate test environment</h2>
-          <p>Any gif?</p>
+          <img src="./img/prepare_env.gif" alt="">
         </section>
 
         <section>
@@ -121,7 +119,7 @@
 
         <section>
           <h4>Pattern  <a href="http://www.protractortest.org/#/style-guide">Page Object</a></h4>
-          <p class="fragment fade-up">...simply models pages as objects within the test code.</p>
+          <p>...simply models pages as objects within the test code.</p>
           <br>
           <h6 class="fragment fade-up">Helps to avoid:</h6>
           <ul style="list-style-type: none; font-size: 70%">
@@ -183,7 +181,7 @@ describe('Example test suite', async () => {
             <ul class="dashed font-size-28px">
               <li> choose and configurate browser</li>
               <li> choose framework: jasmine <span style="color: #565656">by default</span>, mocha or custom</li>
-              <li> send options to Jasmine</li>
+              <li> send options to the chosen framework</li>
               <li> set up timeouts</li>
               <li> include/exclude spec files</li>
               <li> set up path to save logers output</li>
@@ -195,10 +193,24 @@ describe('Example test suite', async () => {
 
         <section>
           <p>Chrome configuration example</p>
-        </section>
-
-        <section>
-          <p>onPrepare example</p>
+<pre><code class="hljs" data-line-numbers="1-17" style="overflow: hidden;" data-trim data-noescape>capabilities: {
+  browserName: 'chrome',
+  maxInstances: 3,
+  chromeOptions: {
+    args: ['--headless', '--window-size=1920,1080'],
+    prefs: {
+      download: {
+        default_directory: require('path').join(__dirname, '../..', 'data-file'),
+        directory_upgrade: true
+      },
+      safebrowsing: {
+        enabled: true
+      }
+    }
+  }
+}
+};
+        </code></pre>
         </section>
 
         <section>
@@ -206,12 +218,11 @@ describe('Example test suite', async () => {
         </section>
 
         <section>
-          <h4>Most freequent Errors</h4>
+          <h4>Vulnerable places</h4>
           <ul>
             <li>Wrong selectors</li>
-            <li>Jasmine timeout</li>
-            <li>Async callback timeout</li>
             <li>Non Angular app</li>
+            <li>Timers</li>
             <li>Non stable tests</li>
             <li>Dependent test suites</li>
           </ul>
@@ -227,7 +238,7 @@ describe('Example test suite', async () => {
           </ol>
         </section>
 
-        <section data-background-image="./img/error.gif"></section>
+        <!-- <section data-background-image="./img/error.gif"></section> -->
 
         <section>
           <h2>Q&A</h2>
