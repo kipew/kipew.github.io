@@ -158,11 +158,11 @@ describe('Example test suite', async () => {
 
   beforeAll(async () => {
     examplePO = new ExamplePageObject();
-    examplePO.navigateToPage();
+    await examplePO.navigateToPage();
   });
 
   it('shold navigate to example page', async () => {
-    expect(examplePO.isPageOpened()).toBe(true, 'comment');
+    expect(await examplePO.isPageOpened()).toBe(true, 'comment');
   });
 }
 </code></pre>
@@ -252,7 +252,6 @@ describe('Example test suite', async () => {
 		<script src="js/reveal.js"></script>
 
 		<script>
-
 			// More info about config & dependencies:
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
