@@ -8,11 +8,11 @@
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="lib/css/monokai.css">
-    <link rel="stylesheet" href="lib/css/styles.css">
+		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="lib/css/custom-style.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -26,29 +26,94 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-
-        <section></section>
-
-        <section data-transition="fade-in" data-transition-speed="slow">
-          <h2>Is PROTRACTOR hurmfull for your health?</h2>
+        <section>
+          <h3>Testing Web Application</h3>
+          <p class="fragment fade-in" style="font-size: 0.6em">... is a software testing technique exclusively adopted to test the applications that are hosted on web in which the application interfaces and other functionalities are tested.</p>
         </section>
 
-        <section data-transition="fade in slide-out" data-transition-speed="slow">
-          <h2>Protractor, what the ..?</h2>
-          <div class="fragment fade-in">
-            <p>...is an end-to-end test framework for Angular and AngularJS applications. Protractor runs tests against your application running in a real browser, interacting with it as a user would.</p>
-            <img src="./img/angular-protractor.png" alt="angular+protractor">
+        <section>
+          <h4>Benefits of Software Testing</h4>
+          <ul style="font-size: 0.6em">
+            <li class="fragment fade-up">Proof application works</li>
+            <li class="fragment fade-up">Better quality</li>
+            <li class="fragment fade-up">Increased development velocity</li>
+            <li class="fragment fade-up">Improved productivity</li>
+            <li class="fragment fade-up">Prevents code aging</li>
+            <li class="fragment fade-up">Provides reliability</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>Different Types Of Software Testing</h4>
+          <div class="two-box" style="font-size: 0.6em">
+            <div>
+              <p><u>Functional Testing types include:</u></p>
+              <ul>
+                <li class="fragment highlight-blue">Unit Testing</li>
+                <li class="fragment highlight-blue">Integration Testing</li>
+                <li class="fragment highlight-blue">System Testing</li>
+                <li>Sanity Testing</li>
+                <li>Smoke Testing</li>
+                <li>Interface Testing</li>
+                <li>Regression Testing</li>
+                <li>Beta/Acceptance Testing</li>
+              </ul>
+            </div>
+
+            <div>
+              <p><u>Non-functional Testing types include:</u></p>
+              <ul>
+                <li>Performance Testing</li>
+                <li>Load Testing</li>
+                <li>Stress Testing</li>
+                <li>Volume Testing</li>
+                <li>Security Testing</li>
+                <li>Compatibility Testing</li>
+                <li>Install Testing</li>
+                <li>Recovery Testing</li>
+                <li>Reliability Testing</li>
+                <li>Usability Testing</li>
+                <li>Compliance Testing</li>
+                <li>Localization Testing</li>
+              </ul>
+            </div>
           </div>
         </section>
 
         <section>
-          <h2>But, what is end-to-end testing?</h2>
-          <p class="fragment fade-in">End-to-End Testing is defined as a type Software Testing that not only validates the software system under test but also checks its integration with external interfaces. Hence, the name "End-to-End". The purpose of End-to-End Testing is to exercise a complete production-like scenario.</p>
+          <h4>Unit Testing</h4>
+          <p style="font-size: 0.6em"><i>testing of an individual software component or module is termed as Unit Testing. It is typically done by the programmer and not by testers, as it requires detailed knowledge of the internal program design and code.</i></p>
+          <div  class="fragment fade-up">
+            <h4>Benefits:</h4>
+            <ul style="font-size: 0.6em">
+              <li>increases confidence in changing/ maintaining code</li>
+              <li>сodes are more reusable</li>
+              <li>development is faster</li>
+              <li>the cost of fixing a defect detected during unit testing is lesser in comparison to that of defects detected at higher levels</li>
+              <li>debugging is easy</li>
+              <li>codes are more reliable</li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h4>Integration Testing</h4>
+          <p style="font-size: 0.6em">testing of all integrated modules to verify the combined functionality after integration is termed as Integration Testing.</p>
+          <img src="./img/giphy.gif" alt="">
+          <p class="fragment fade-up">It allows avoiding situations as above.</p>
+        </section>
+        <section>
+          <h4>Functional/End-to-end Testing</h4>
+          <p style="font-size: 0.6em">involves testing of a complete application environment in a situation that mimics real-world use, such as interacting with a database, using network communications, or interacting with other hardware, applications, or systems if appropriate.</p>
         </section>
 
         <section>
-          <h2>JS Testing tools and frameworks</h2>
-          <ul class="font-size-24px">
+          <h4>Concept of Testing Pyramid</h4>
+          <img src="./img/the-test-pyramid.png" alt="">
+        </section>
+
+        <section>
+          <h4>JS Testing tools and frameworks</h4>
+          <ul style="font-size: 0.6em">
             <li>launch your tests in the browser or Node.js</li>
             <li>testing structure providers help you arrange your test files</li>
             <li>assertion functions check if the results a test returns are as expected</li>
@@ -59,195 +124,43 @@
             <li>browser Controllers simulate user actions for Functional Tests</li>
             <li>visual Regression Tools are used to compare your site to its previous versions visually by using image comparison techniques</li>
           </ul>
-          <p class="font-size-28px" style="color: #17ff2e">To achieve the most flexible set functionality, it’s common to use a combination of several tools.</p>
+          <p style="font-size: 0.6em">To achieve the most flexible set functionality, it’s common to use a combination of several tools.</p>
         </section>
 
-
         <section>
-          <div class="flex-container font-size-24px">
+          <div class="flex-container style="font-size: 0.6em">
             <div class="flex-container__item" style="flex-grow: 9;">
               <img class="card-img" src="./img/unit_testing_tools.jpg">
-              <p>General Prominent Testing Tools</p>
+              <p style="font-size: 0.6em">General Prominent Testing Tools</p>
             </div>
             <div class="flex-container__item" style="flex-grow: 10;">
               <img class="card-img card-zoom" src="./img/integration_testing_frameworks.png">
-              <p>Unit and Integration Tests Frameworks</p>
+              <p style="font-size: 0.6em">Unit and Integration Tests Frameworks</p>
             </div>
             <div class="flex-container__item" style="flex-grow: 15;">
               <img class="card-img card-zoom" src="./img/e2e_frameworks.jpg">
-              <p>Functional Testing Tools</p>
+              <p style="font-size: 0.6em">Functional Testing Tools</p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2>Everyone loves e2e tests:</h2>
-          <ul class="dashed">
-            <li class="fragment fade-in"> developers, because they don’t write them</li>
-            <li class="fragment fade-in"> business, because they reflect the real user experience</li>
-            <li class="fragment fade-in"> testers, because they act at the user high level and reveal “visible” bugs</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2>Prepare your appropriate test environment</h2>
-          <img src="./img/prepare_env.gif" alt="">
-        </section>
-
-        <section>
-          <h4>Project Structure</h4>
-          <p style="font-size: 70%;">Group your e2e tests in a structure that makes sense to the structure of your project</p>
-<pre><code class="hljs" data-line-numbers="1-15">
-  |-- test
-    |-- unit
-    |-- e2e
-      |-- page-objects
-          home-page.js
-          profile-page.js
-          contacts-page.js
-      home-spec.js
-      profile-spec.js
-      contacts-spec.js
-
-</code></pre>
-        <ul class="font-size-28px">
-          <li>Finding your e2e related files should be intuitive and easy</li>
-          <li>Makes the folder structure more readable</li>
-          <li>Clearly separates e2e tests from unit tests</li>
-        </ul>
-        </section>
-
-        <section>
-          <h4>Pattern  <a href="http://www.protractortest.org/#/style-guide">Page Object</a></h4>
-          <p>...simply models pages as objects within the test code.</p>
-          <br>
-          <h6 class="fragment fade-up">Helps to avoid:</h6>
-          <ul style="list-style-type: none; font-size: 70%">
-            <li class="fragment fade-up">- Code duplication</li>
-            <li class="fragment fade-up">- Maintenance problem</li>
-            <li class="fragment fade-up">- Hard to understand</li>
-          </ul>
-        </section>
-
-        <section>
-          <p class="font-size-28px" style="color: #1b91ff">example.page-object.ts</p>
-<pre class="font-size-24px"><code style="overflow: hidden;" class="hljs" data-line-numbers="1-15">import { browser, by, element, ElementFinder } from 'protractor';
-
-export class ExamplePageObject extends BasePageObject {
-
-  public async navigateToPage(): Promise<void> {
-    return super.navigateTo('/example-page');
-  }
-
-  public getExampleButton(): ElementFinder {
-    return element(by.css('.example-button'));
-  }
-
- // more methods...
-}
-
-</code></pre>
-          </section>
-
-          <section>
-            <p class="font-size-28px" style="color: #1b91ff">example.spec.ts</p>
-<pre><code class="hljs" data-line-numbers="1-15" style="overflow: hidden;">import { ExamplePageObject } from '@pos/example.page-object';
-
-describe('Example test suite', async () => {
-  let examplePO: ExamplePageObject;
-
-  beforeAll(async () => {
-    examplePO = new ExamplePageObject();
-    await examplePO.navigateToPage();
-  });
-
-  it('shold navigate to example page', async () => {
-    expect(await examplePO.isPageOpened()).toBe(true, 'comment');
-  });
-}
-</code></pre>
-              </section>
-
-        <section>
-          <h4>Configs</h4>
-          <ul>
-            <li>build configs</li>
-            <ul class="dashed font-size-28px">
-              <li> set up environment <span style="color: #ff2c2d">prod</span>/<span style="color: #17ff2e">dev</span>/<span style="color: #1b91ff">mock</span></li>
-              <li> use proxy</li>
-              <li> run separate feature independently</li>
-            </ul>
-            <li>protractor config</li>
-            <ul class="dashed font-size-28px">
-              <li> choose and configurate browser</li>
-              <li> choose framework: jasmine <span style="color: #565656">by default</span>, mocha or custom</li>
-              <li> send options to the chosen framework</li>
-              <li> set up timeouts</li>
-              <li> include/exclude spec files</li>
-              <li> set up path to save logers output</li>
-              <li> execute some preparation before/after tests run</li>
-              <li> <a href="https://github.com/angular/protractor/blob/master/lib/config.ts">and more........</a></li>
-            </ul>
-          </ul>
-        </section>
-
-        <section>
-          <p>Chrome configuration example</p>
-<pre><code class="hljs" data-line-numbers="1-17" style="overflow: hidden;" data-trim data-noescape>capabilities: {
-  browserName: 'chrome',
-  maxInstances: 3,
-  chromeOptions: {
-    args: ['--headless', '--window-size=1920,1080'],
-    prefs: {
-      download: {
-        default_directory: require('path').join(__dirname, '../..', 'data-file'),
-        directory_upgrade: true
-      },
-      safebrowsing: {
-        enabled: true
-      }
-    }
-  }
-}
-};
-        </code></pre>
-        </section>
-
-        <section>
-          <h2><p style="color: #17ff2e">Green console</p> <p class="font-size-28px">vs</p> <p style="color: #ff2c2d">Red console</p></h2>
-        </section>
-
-        <section>
-          <h4>Vulnerable places</h4>
-          <ul>
-            <li>Wrong selectors</li>
-            <li>Non Angular app</li>
-            <li>Timers</li>
-            <li>Non stable tests</li>
-            <li>Dependent test suites</li>
-          </ul>
-        </section>
-
-        <section>
           <h4>Useful links</h4>
-          <ol>
+          <ol style="font-size: 0.6em">
+            <li>Why testing is important in: <a href="https://www.exove.com/blog/benefits-of-software-testing/">Benefits of Software Testing</a></li>
+            <li>Types Of Software Testing: <a href="https://www.softwaretestinghelp.com/types-of-software-testing/">Different Testing Types With Details</a></li>
+            <li>Article <a href="https://medium.com/@timothy.cochran/test-pyramid-the-key-to-good-automated-test-strategy-9f3d7e3c02d5">Test Pyramid: the key to good automated test strategy</a></li>
             <li>Great overview of <a href="https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2019-264e19514d0a">JavaScript Testing tools and popular frameworks</a></li>
-            <li>Nice to read about <a href="https://www.logigear.com/blog/test-automation/15-best-practices-for-building-an-awesome-protractor-framework/">"15 Best Practices for Building an Efficient Protractor Automation Framework"</a></li>
-            <li>FAQ and <a href="https://blog.octo.com/end-to-end-testing-from-the-trenches-with-protractor/">answers from real life situation</a> how to do with Protractor</li>
-            <li>Protractor <a href="http://www.protractortest.org">Documentation</a></li>
+            <li>Worth to read! <a href="https://medium.com/feedzaitech/writing-testable-code-b3201d4538eb">Writing Testable Code</a></li>
           </ol>
         </section>
 
-        <!-- <section data-background-image="./img/error.gif"></section> -->
+      </div>
 
-        <section>
-          <h2>Q&A</h2>
-          <img src="./img/presentation_link.png" alt="presentation link">
-          <p class="font-size-24px" style="color: #1b91ff"><i>#presentation_link</i></p>
-        </section>
-
-			</div>
-		</div>
+    <div class="epam-logo">
+      <img class="" src="./img/EPAM_LOGO_white_blue.png" alt="EPAM">
+    </div>
+    </div>
 
 		<script src="js/reveal.js"></script>
 
@@ -256,16 +169,14 @@ describe('Example test suite', async () => {
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				hash: true,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				],
-        markdown: {
-		        smartypants: true
-        }
+					{ src: 'plugin/highlight/highlight.js' },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
 			});
-    </script>
+		</script>
 	</body>
 </html>
