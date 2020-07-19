@@ -95,12 +95,14 @@
             </ul>
           </div>
         </section>
+
         <section>
           <h4>Integration Testing</h4>
           <p style="font-size: 0.6em">testing of all integrated modules to verify the combined functionality after integration is termed as Integration Testing.</p>
           <img src="./img/giphy.gif" alt="">
           <p class="fragment fade-up">It allows avoiding situations as above.</p>
         </section>
+
         <section>
           <h4>Functional/End-to-end Testing</h4>
           <p style="font-size: 0.6em">involves testing of a complete application environment in a situation that mimics real-world use, such as interacting with a database, using network communications, or interacting with other hardware, applications, or systems if appropriate.</p>
@@ -109,6 +111,11 @@
         <section>
           <h4>Concept of Testing Pyramid</h4>
           <img src="./img/the-test-pyramid.png" alt="">
+        </section>
+
+        <section>
+          <h4>Inverted Testing Pyramid (anti-pattern)</h4>
+          <img src="./img/inverted-pyramid.png" alt="">
         </section>
 
         <section>
@@ -145,6 +152,52 @@
         </section>
 
         <section>
+          <h4>TDD and BDD Testing methodologies</h4>
+        </section>
+
+        <section>
+          <h4><em>Test Driven Development</em></h4>
+          <p style="font-size: 0.6em">a software development methodology in which unit tests are used to drive the development of the application.</p>
+          <ul style="font-size: 0.6em">
+            <li class="fragment fade-up">Before starting to implement a feature, you should write a test for it.</li>
+            <li class="fragment fade-up">The test will obviously fail, since the thing being tested doesn’t exist.</li>
+            <li class="fragment fade-up">You then proceed to write the minimum amount of code that will make the test pass. Cheating (i.e., taking a shortcut that doesn’t really solve the problem but causes the test to pass) is not only allowed, but actively encouraged.</li>
+            <li class="fragment fade-up">As soon as the testing passes, it’s time for refactoring (i.e., improving the code without changing its behavior).</li>
+          </ul>
+          <div style="font-size: 0.6em" class="fragment fade-in">
+            <h4>Benefits:</h4>
+            <ol>
+              <li>Code coverage</li>
+              <li>Simple design</li>
+              <li>Low coupled code</li>
+            </ol>
+          </div>
+        </section>
+
+        <section>
+          <h4><em>Behavior-Driven Development</em></h4>
+          <p style="font-size: 0.6em">evolved as a response to TDD, and emphasizes the need to include not only software developers but also non-technical people, such as business analysts, in the process of defining the tests.</p>
+          <p style="font-size: 0.6em">Idea: <strong>TEST = REQUIREMENT</strong></p>
+          <ul style="font-size: 0.6em">
+            <li><strong>Given</strong> some initial context (the givens),</li>
+            <li><strong>When</strong> an event occurs,</li>
+            <li><strong>then</strong> ensure some outcomes.</li>
+          </ul>
+          <div style="font-size: 0.6em">
+            <p>By using a dedicated tool (such as <a href="https://github.com/cucumber/cucumber-js">Cucumber</a>, <a href="https://jbehave.org/">JBehave</a>, or <a href="https://specflow.org/">Specflow</a>), it’s possible to turn requirements written in this format to a test skeleton.</p>
+          </div>
+        </section>
+
+        <section>
+          <h4>And How Do Unit Testing, TDD, and BDD Relate to Each Other?</h4>
+          <ul style="font-size: 0.6em">
+            <li class="fragment fade-up">Unit testing is a <strong>type of automated testing</strong>. You can write unit testing without using TDD or BDD, just by writing the tests after the production code.</li>
+            <li class="fragment fade-up">TDD is a <strong>software development methodology</strong>, in which the developer writes code in very short cycles, always starting with a failing test.</li>
+            <li class="fragment fade-up">BDD can be thought of as a “flavor” of TDD, in which the application’s development is driven by its behavior, described in the forms of human-readable requirements that must be later converted to executable tests.</li>
+          </ul>
+        </section>
+
+        <section>
           <h4>Useful links</h4>
           <ol style="font-size: 0.6em">
             <li>Why testing is important in: <a href="https://www.exove.com/blog/benefits-of-software-testing/">Benefits of Software Testing</a></li>
@@ -152,13 +205,17 @@
             <li>Article <a href="https://medium.com/@timothy.cochran/test-pyramid-the-key-to-good-automated-test-strategy-9f3d7e3c02d5">Test Pyramid: the key to good automated test strategy</a></li>
             <li>Great overview of <a href="https://medium.com/welldone-software/an-overview-of-javascript-testing-in-2019-264e19514d0a">JavaScript Testing tools and popular frameworks</a></li>
             <li>Worth to read! <a href="https://medium.com/feedzaitech/writing-testable-code-b3201d4538eb">Writing Testable Code</a></li>
+            <li><a href="https://blog.gurock.com/unit-testing-tdd-bdd/?utm_source=adwords&utm_medium=cpc&utm_campaign=europe_en_dsa&utm_content=&creative=302597526452&keyword=&matchtype=b&network=g&device=c&gclid=Cj0KCQjw3s_4BRDPARIsAJsyoLPTsItZQgIH4a1v8VItT6MpSYLJDbstdBsBs1ik2Iy55vK4ZeNTN8AaAmoOEALw_wcB">Unit Testing/TDD/BDD</a></li>
           </ol>
         </section>
 
       </div>
 
     <div class="epam-logo">
-      <img class="" src="./img/EPAM_LOGO_white_blue.png" alt="EPAM">
+      <div class="divider">
+        <img class="logo-img" src="./img/EPAM_LOGO_white_blue.png" alt="EPAM">
+        <a class="header-link" href="/">Testing Web Application</a>
+      </div>
     </div>
     </div>
 
